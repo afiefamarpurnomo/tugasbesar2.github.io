@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    
+    <title>PT.Telkom Indonesia </title>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+</head>
+
+<body>
+    <div class="container">
+        <header>Pendaftaran PT.Telkom Indonesia</header>
+
+        <form id="formid">
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Identitas Diri</span>
+            
+                    <div class="fields">
+                        <!-- nama -->
+                        <div class="input-field">
+                            <label>Nama Lengkap</label>
+                            <input type="text" name="nama" placeholder="Masukan Nama Lengkap" required>
+                        </div>
+
+                        <!-- nomer -->
+                        <div class="input-field">
+                            <label>Nomer Handphone</label>
+                            <input type="number" name="nomer" placeholder="Masukan Nomer Handphone" required>
+                        </div>
+
+                        <!-- email -->
+                        <div class="input-field">
+                            <label>Email</label>
+                            <input type="email" name="email" placeholder="Masukan Email" required>
+                        </div>
+
+                        <!-- pendidikan -->
+                        <div class="input-field">
+                            <label>Pendidikan</label>
+                            <select name="pendidikan" title="Pendidikan" id="Pendidikan" required>
+                                <option disabled selected>Pilih Pendidikan</option>
+                                <option value="S1">S1</option>
+                                <option value="S2">S2</option>
+                                <option value="S3">S3</option>
+                            </select>
+                        </div>
+
+                        <!-- universitas -->
+                        <div class="input-field">
+                            <label>Asal Universitas</label>
+                            <input type="text" name="universitas" Id="Universitas" placeholder="Masukan Asal Universitas" required>
+                        </div>
+
+                        <!-- bidang -->
+                        <div class="input-field">
+                            <label>Bidang Didaftarkan</label>
+                            <select name="bidang" title="Bidang didaftarkan" id="Bidang" required>
+                                <option disabled selected>Pilih Bidang</option>
+                                <option value="Front-end">Front End</option>
+                                <option value="Back-end">Back Endend</option>
+                                <option value="Software-Architect">Software Architect</option>
+                                <option value="Quality-Assurance">Quality Assurance</option>
+                                <option value="Document-Engineerg">Document Engineer</option>
+                                <option value="Android Developer">Android Developer</option>
+                                <option value="iOS Developer">iOS Developer</option>
+                            </select>
+                        </div>
+
+                        <!-- pengalaman -->
+                        <div class="input-field">
+                            <label>Pengalaman Kerja</label>
+                            <select name="pengalaman" title="Pengalaman Kerja" id="Pengalaman" required>
+                                <option disabled selected>Pilih Pengalaman Kerja</option>
+                                <option>5 Tahun</option>
+                                <option>6 Tahun</option>
+                                <option>7 Tahun</option>
+                                <option>8 Tahun</option>
+                                <option>9 Tahun</option>
+                                <option>10 Tahun</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+
+                <span class="title">Data Pendukung</span>
+
+                <div class="fields">
+                    <!-- background -->
+                    <div class="input-field">
+                        <label>Background Sekolah</label>
+                        <input type="text" name="background" id="Backgound" placeholder="Masukan Background Sekolah">
+                    </div>
+
+                    <!-- sertifikat -->
+                    <div class="input-field">
+                        <label>Sertifikat Internasional</label>
+                        <input type="url" name="sertifikat" id="Sertifikat" placeholder="Masukan link sertifikat ">
+                    </div>
+
+                    <!-- portofolio -->
+                    <div class="input-field">
+                        <label>Portofolio</label>
+                        <input type="url" name="portofolio" id="portofolio" placeholder="Masukan link Portofolio">
+                    </div>
+
+                    <!-- cv -->
+                    <div class="input-field">
+                        <label>Upload CV</label>
+                        <input type="file" name="cv" id="cv" placeholder="Upload CV" accept="aplication/pdf*">
+                    </div>
+                </div>
+
+                <button type="submit" id="submit">
+                    Submit
+                </button>
+            </div>
+
+            <script type="text/javascript">
+                var uploadField = document.getElementById("cv");
+                uploadField.onchange = function() {
+                    if(this.files[0].size > 500000){ 
+                       alert("Maaf. File Terlalu Besar ! Maksimal Upload 500 KB");
+                       this.value = "";
+                    };
+                };
+                </script> 
+        </form>
+        <!-- Untuk Menunjukkan Hasil dari formulir yang sudah diisi -->
+        <!-- Modal -->
+        <!-- <dialog id="favDialog">
+            <section id="modal-body">
+            </section>
+            <menu>
+              <button id="cancel" type="reset">Cancel</button>
+            </menu>
+        </dialog> -->
+    </div>
+
+    <script>
+        const form = document.getElementById('formid')/* ,
+            dialog = document.getElementById('favDialog'),
+            cancelButton = document.getElementById('cancel') */
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+
+            const cv = document.querySelector('input[name="cv"]'),
+            forms = {
+                nama: document.querySelector('input[name="nama"]').value,
+                nomer: document.querySelector('input[name="nomer"]').value,
+                email: document.querySelector('input[name="email"]').value,
+                pendidikan: document.querySelector('select[name="pendidikan"]').value,
+                universitas: document.querySelector('input[name="universitas"]').value,
+                bidang: document.querySelector('select[name="bidang"]').value,
+                pengalaman: document.querySelector('select[name="pengalaman"]').value,
+                background: document.querySelector('input[name="background"]').value,
+                sertifikat: document.querySelector('input[name="sertifikat"]').value,
+                portofolio: document.querySelector('input[name="portofolio"]').value,
+                cv: cv.files && cv.files[0]
+                ? URL.createObjectURL(cv.files[0])
+                : null
+            },
+            html = `<div style="text-align: left;">
+                <b>Hasil Formulir</b><p><hr><br>
+                Nama Lengkap: ${forms.nama}<br>
+                Nomer Handphone: ${forms.nomer}<br>
+                Email: ${forms.email}<br>
+                Pendidikan: ${forms.pendidikan}<br>
+                Asal Universitas: ${forms.universitas}<br>
+                Bidang Didaftarkan: ${forms.bidang}<br>
+                Pengalaman: ${forms.pengalaman}<br>
+                Background Sekolah: ${forms.background}<br>
+                Sertifikat: <a href="${forms.sertifikat}">${forms.sertifikat}</a><br>
+                Portofolio: <a href="${forms.portofolio}">${forms.portofolio}</a><br>
+                ${forms.cv ? `CV: <iframe src="${forms.cv}" style="width: 100%;"></iframe>` : ''}
+            </div>`
+            
+            Swal.fire({
+                confirmButtonColor:'red',
+                html: html
+            })
+
+            /* document.getElementById('modal-body').innerHTML = html
+            dialog.showModal() */
+        })
+
+        /* cancelButton.addEventListener('click', function() {
+            dialog.close()
+        }) */
+    </script>
+
+</body>
+
+</html>
